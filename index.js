@@ -20,11 +20,11 @@ app.post('/api/webhook', express.raw({type: 'application/json'}),catchError((req
     let event = stripe.webhooks.constructEvent(req.body, sig, "whsec_s7Fg5fSVAFhpGq5W4N5ALkShXT8TR7n4");
     let checkout
   if(event.type=='checkout.session.completed'){
-    const checkout = event.data.object;
+     checkout = event.data.object;
 
   }
   
-    res.json({message:"success"},checkout);
+    res.json({message:"success",checkout});
   }))
 app.use(cors())
 app.use(express.json());
